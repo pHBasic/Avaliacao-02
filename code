@@ -1,0 +1,50 @@
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+
+public class imcCalculator {
+    public static void main(String[] args) {
+        DecimalFormat format = new DecimalFormat("0.00");
+        //Formatação para o print do IMC
+        
+        double userWeight = Double.parseDouble(JOptionPane.showInputDialog("Insira seu peso (Em kilogramas): "));
+        while (userWeight < 0) {
+            JOptionPane.showMessageDialog(null, "Dado impossível. Insira novamente.");
+            userWeight = Double.parseDouble(JOptionPane.showInputDialog("Insira sua altura (Em kilogramas): "));
+        /*Verificar se há entrada de valores negativos.
+        Caso haja, pede um novo valor e sobrepõe o anterior até se inserir um não-negativo*/
+        }
+        
+        double userHeight = Double.parseDouble(JOptionPane.showInputDialog("Insira sua altura (Em metros): "));
+        while (userHeight < 0) {
+            JOptionPane.showMessageDialog(null, "Dado impossível. Insira novamente.");
+            userHeight = Double.parseDouble(JOptionPane.showInputDialog("Insira sua altura (Em metros): "));
+            /*Verificar se há entrada de valores negativos.
+        Caso haja, pede um novo valor e sobrepõe o anterior até se inserir um não-negativo*/
+        }
+        
+        double imc = userWeight/(userHeight * userHeight);
+        //Cálculo do imc
+        
+        if (imc >= 16 & imc <= 16.9) {
+            JOptionPane.showMessageDialog(null, "Seu IMC: " + format.format(imc) + "\nIMC de 16 à 16.9 - Muito abaixo do peso");
+        }
+        else  if (imc >= 17 & imc <= 18.4) {
+            JOptionPane.showMessageDialog(null, "Seu IMC: " + format.format(imc) + "\nIMC de 17 à 18.4 - Abaixo do peso");
+        }
+        else  if (imc >= 18.5 & imc <= 24.9) {
+            JOptionPane.showMessageDialog(null, "Seu IMC: " + format.format(imc) + "\nIMC de 18.5 à 24.9 - Peso normal");
+        }
+        else  if (imc >= 25 & imc <= 29.9) {
+            JOptionPane.showMessageDialog(null, "Seu IMC: " + format.format(imc) + "\nIMC de 25 à 29.9 - Acima do peso");
+        }
+        else  if (imc >= 30 & imc <= 34.9) {
+            JOptionPane.showMessageDialog(null, "Seu IMC: " + format.format(imc) + "\nIMC de 30 à 34.9 - Obesidade Grau I");
+        }
+        else  if (imc >= 35 & imc <= 40) {
+            JOptionPane.showMessageDialog(null, "Seu IMC: " + format.format(imc) + "\nIMC de 35 à 40 - Obesidade Grau II");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Seu IMC: " + format.format(imc) + "\nIMC maior que 40 - Obesidade Grau III");
+        }
+    }
+}
